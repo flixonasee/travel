@@ -16,6 +16,7 @@ const detailAddress = document.getElementById('detailAddress');
 const mapsLink = document.getElementById('mapsLink');
 const detailNotes = document.getElementById('detailNotes');
 const detailTags = document.getElementById('detailTags');
+const detailDates = document.getElementById('detailDates');
 const statusActions = document.getElementById('statusActions');
 const statusButtonTemplate = document.getElementById('statusButtonTemplate');
 
@@ -101,10 +102,19 @@ function renderFilters() {
     categoryPills.appendChild(pill);
   });
 
+  const prevNeighborhood = neighborhoodFilter.value || 'all';
   const neighborhoods = ['all', ...new Set(items.map((i) => i.neighborhood).filter(Boolean))];
   neighborhoodFilter.innerHTML = neighborhoods
     .map((n) => `<option value="${n}">${n === 'all' ? 'All' : n}</option>`)
     .join('');
+  neighborhoodFilter.value = neighborhoods.includes(prevNeighborhood) ? prevNeighborhood : 'all';
+
+  const prevBudget = budgetFilter.value || 'all';
+  const budgets = ['all', ...new Set(items.map((i) => i.budget).filter(Boolean))];
+  budgetFilter.innerHTML = budgets
+    .map((b) => `<option value="${b}">${b === 'all' ? 'All' : b}</option>`)
+    .join('');
+  budgetFilter.value = budgets.includes(prevBudget) ? prevBudget : 'all';
 }
 
 function filterItems() {
@@ -122,7 +132,7 @@ function filterItems() {
     if (searchTerm) {
       const haystack = `${item.name || ''} ${item.artist || ''} ${item.title || ''} ${
         item.tags?.join(' ') || ''
-      } ${item.notes || ''}`
+      } ${item.notes || ''} ${item.dates || ''}`
         .toLowerCase();
       if (!haystack.includes(searchTerm)) return false;
     }
@@ -148,11 +158,15 @@ function renderCards() {
   filtered.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'card';
+    const timing = item.dates || item.estimated_visit_time
+      ? `<p class="card-dates">${[item.dates, item.estimated_visit_time].filter(Boolean).join(' • ')}</p>`
+      : '';
     card.innerHTML = `
       <div class="card-emoji">${item.emoji}</div>
       <div>
         <h3 class="card-title">${formatTitle(item)}</h3>
         <p class="card-meta">${item.neighborhood || 'NYC'} ${item.budget ? '• ' + item.budget : ''}</p>
+        ${timing}
         ${item.status ? `<span class="badge">${statusBadge[item.status] || ''} ${capitalize(item.status)}</span>` : ''}
       </div>
     `;
@@ -171,7 +185,8 @@ function openDetail(item) {
   detailPanel.classList.add('open');
   detailEmoji.textContent = item.emoji;
   detailTitle.textContent = formatTitle(item);
-  detailMeta.textContent = [item.neighborhood, item.budget].filter(Boolean).join(' • ');
+  detailMeta.textContent = [item.neighborhood, item.budget, item.subcategory].filter(Boolean).join(' • ');
+  detailDates.textContent = formatDates(item);
   detailAddress.textContent = item.address || 'Address to be added';
   detailNotes.textContent = item.notes || 'Add your notes here.';
   detailTags.innerHTML = item.tags?.length
@@ -211,6 +226,11 @@ function formatTitle(item) {
     return [artist, title].filter(Boolean).join(' — ');
   }
   return item.name || 'Untitled';
+}
+
+function formatDates(item) {
+  const parts = [item.dates, item.estimated_visit_time].filter(Boolean);
+  return parts.length ? parts.join(' • ') : 'Add dates or timing';
 }
 
 function capitalize(text) {
