@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYC Personal Directory</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>NYC Personal Directory</h1>
+      <p class="subtitle">Keep track of exhibitions, food, and experiences across the city.</p>
+    </div>
+    <div class="progress" id="progress"></div>
+  </header>
+
+  <section class="filters">
+    <div class="filter-group">
+      <span class="filter-label">Category</span>
+      <div class="pill-bar" id="categoryPills"></div>
+    </div>
+    <div class="filter-group inline-group">
+      <label>
+        Neighborhood
+        <select id="neighborhoodFilter"></select>
+      </label>
+      <label>
+        Budget
+        <select id="budgetFilter">
+          <option value="all">All</option>
+          <option value="$">$</option>
+          <option value="$$">$$</option>
+          <option value="$$$">$$$</option>
+          <option value="$$$$">$$$$</option>
+        </select>
+      </label>
+      <label>
+        Status
+        <select id="statusFilter">
+          <option value="all">All</option>
+          <option value="draft">Draft</option>
+          <option value="planned">Planned</option>
+          <option value="completed">Completed</option>
+          <option value="archived">Archived</option>
+        </select>
+      </label>
+    </div>
+    <div class="filter-group">
+      <input type="search" id="searchInput" placeholder="Search name, tags, notes" />
+    </div>
+  </section>
+
+  <main>
+    <div id="cardGrid" class="card-grid"></div>
+  </main>
+
+  <div class="detail-panel" id="detailPanel">
+    <div class="detail-content">
+      <button class="close-btn" id="closeDetail">×</button>
+      <div class="detail-header">
+        <div class="detail-emoji" id="detailEmoji">✨</div>
+        <div>
+          <h2 id="detailTitle"></h2>
+          <p class="detail-meta" id="detailMeta"></p>
+          <p class="detail-dates" id="detailDates"></p>
+        </div>
+      </div>
+      <p class="detail-address" id="detailAddress"></p>
+      <div class="detail-buttons">
+        <a class="btn primary" href="#" id="mapsLink" target="_blank" rel="noopener">Open in Maps</a>
+      </div>
+      <p class="detail-notes" id="detailNotes"></p>
+      <div class="detail-tags" id="detailTags"></div>
+      <div class="status-actions" id="statusActions"></div>
+    </div>
+  </div>
+
+  <template id="statusButtonTemplate">
+    <button class="btn ghost"></button>
+  </template>
+
+  <button class="fab" id="openAddModal" title="Add a new place">＋</button>
+
+  <div class="modal" id="addModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeAddModal">×</button>
+      <div class="panel-header">
+        <div>
+          <h2>Add a new item</h2>
+          <p class="muted">Quickly capture a place or experience. All fields are optional but name and category help with filters.</p>
+        </div>
+      </div>
+      <form id="addItemForm" class="add-item-form">
+        <div class="form-grid">
+          <label>
+            Name or title
+            <input type="text" id="addName" required />
+          </label>
+          <label>
+            Category
+            <select id="addCategory">
+              <option value="museum">Museum</option>
+              <option value="gallery">Gallery</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="bar">Bar</option>
+              <option value="show">Show</option>
+              <option value="experience">Experience</option>
+              <option value="shop">Shop</option>
+              <option value="walk">Walk</option>
+              <option value="other" selected>Other</option>
+            </select>
+          </label>
+          <label>
+            Subcategory
+            <input type="text" id="addSubcategory" placeholder="Exhibition, cocktail bar, walk..." />
+          </label>
+          <label>
+            Neighborhood
+            <input type="text" id="addNeighborhood" />
+          </label>
+          <label>
+            Budget
+            <input type="text" id="addBudget" placeholder="$ to $$$$" />
+          </label>
+          <label>
+            Status
+            <select id="addStatus">
+              <option value="draft">Draft</option>
+              <option value="planned" selected>Planned</option>
+              <option value="completed">Completed</option>
+              <option value="archived">Archived</option>
+            </select>
+          </label>
+          <label>
+            Dates
+            <input type="text" id="addDates" placeholder="e.g. until Jan 2026" />
+          </label>
+          <label>
+            Estimated visit time
+            <input type="text" id="addTime" placeholder="e.g. 45–60 min" />
+          </label>
+          <label>
+            Address
+            <input type="text" id="addAddress" />
+          </label>
+          <label>
+            Maps link
+            <input type="url" id="addMaps" placeholder="https://maps.google.com/?q=..." />
+            <small class="muted helper">Paste a Google Maps link to auto-fill name, address, and category.</small>
+          </label>
+          <label>
+            Tags
+            <input type="text" id="addTags" placeholder="comma-separated" />
+          </label>
+          <label>
+            Notes
+            <textarea id="addNotes" rows="2" placeholder="Anything to remember"></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Add item</button>
+          <span class="muted" id="addItemStatus"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
