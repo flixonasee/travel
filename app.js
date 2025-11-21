@@ -216,9 +216,7 @@ function renderCards() {
   filtered.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'card';
-    const timing = item.dates || item.estimated_visit_time
-      ? `<p class="card-dates">${[item.dates, item.estimated_visit_time].filter(Boolean).join(' • ')}</p>`
-      : '';
+    const location = splitVenueAddress(item.address);
     const status =
       item.status &&
       `<span class="badge status-${item.status}">${statusBadge[item.status] || ''} ${capitalize(item.status)}</span>`;
@@ -228,9 +226,8 @@ function renderCards() {
         <span class="card-neighborhood">${item.neighborhood || 'NYC'}</span>
       </div>
       <h3 class="card-title">${formatTitle(item)}</h3>
-      <p class="card-meta">${[capitalize(item.category), item.subcategory].filter(Boolean).join(' • ')}</p>
-      <p class="card-meta subtle">${[item.budget, item.estimated_visit_time].filter(Boolean).join(' • ')}</p>
-      ${timing}
+      <p class="card-venue">${location.venue}</p>
+      <p class="card-address">${location.address}</p>
       ${status || ''}
     `;
     card.addEventListener('click', () => openDetail(item));
@@ -290,6 +287,15 @@ function formatTitle(item) {
     return [artist, title].filter(Boolean).join(' — ');
   }
   return item.name || 'Untitled';
+}
+
+function splitVenueAddress(address) {
+  if (!address) return { venue: 'Venue coming soon', address: 'Add address' };
+  const parts = address.split(',').map((p) => p.trim()).filter(Boolean);
+  if (!parts.length) return { venue: 'Venue coming soon', address: 'Add address' };
+  const venue = parts[0];
+  const addressLine = parts.length > 1 ? parts.slice(1).join(', ') : address;
+  return { venue, address: addressLine || venue };
 }
 
 function formatDates(item) {
