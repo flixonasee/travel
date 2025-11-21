@@ -1,0 +1,449 @@
+[
+    {
+        "name": "Caf\u00e9 Sabarsky",
+        "category": "restaurant",
+        "subcategory": "Austrian caf\u00e9 / museum caf\u00e9",
+        "neighborhood": "Upper East Side",
+        "address": "Neue Galerie, 1048 5th Ave, New York NY 10028",
+        "maps_link": "https://maps.google.com/?q=Cafe+Sabarsky+NYC",
+        "budget": "$$$",
+        "status": "draft",
+        "estimated_visit_time": "45\u201375 min",
+        "tags": [
+            "to check with Giulio"
+        ],
+        "notes": "Iconic Viennese-style caf\u00e9 inside the Neue Galerie. Elegant, cultured, perfect for afternoons.",
+        "emoji": ""
+    },
+    {
+        "name": "Chelsea Market",
+        "category": "experience",
+        "subcategory": "market / food hall",
+        "neighborhood": "Chelsea",
+        "address": "75 9th Ave, New York NY 10011",
+        "maps_link": "https://maps.google.com/?q=Chelsea+Market+NYC",
+        "budget": "$\u2013$$$ (varies)",
+        "status": "draft",
+        "estimated_visit_time": "60\u201390 min",
+        "tags": [
+            "to check with Giulio",
+            "busy",
+            "food"
+        ],
+        "notes": "Large food and retail market. Can be crowded but fun for a walk or a quick bite.",
+        "emoji": ""
+    },
+    {
+        "name": "La Grande Boucherie",
+        "category": "restaurant",
+        "subcategory": "French brasserie",
+        "neighborhood": "Midtown",
+        "address": "145 W 53rd St, New York NY 10019",
+        "maps_link": "https://maps.google.com/?q=La+Grande+Boucherie+NYC",
+        "budget": "$$$",
+        "status": "draft",
+        "estimated_visit_time": "60\u2013120 min",
+        "tags": [
+            "to check with Giulio",
+            "French",
+            "beautiful interiors"
+        ],
+        "notes": "Grand brasserie with dramatic Art Nouveau decor. Tourist-adjacent but visually stunning.",
+        "emoji": ""
+    },
+    {
+        "name": "Martinis at The Plaza Hotel",
+        "category": "bar",
+        "subcategory": "cocktail bar / hotel bar",
+        "neighborhood": "Midtown / Central Park South",
+        "address": "The Plaza Hotel, 768 5th Ave, New York NY 10019",
+        "maps_link": "https://maps.google.com/?q=The+Plaza+Hotel+NYC",
+        "budget": "$$$$",
+        "status": "planned",
+        "estimated_visit_time": "45\u201375 min",
+        "tags": [
+            "classic",
+            "martinis"
+        ],
+        "notes": "Classic martinis at The Plaza\u2019s Palm Court or The Champagne Bar. High-end, Old New York atmosphere.",
+        "emoji": ""
+    },
+    {
+        "name": "Rockefeller Center Christmas Tree",
+        "category": "experience",
+        "subcategory": "holiday landmark",
+        "neighborhood": "Midtown",
+        "address": "45 Rockefeller Plaza, New York NY 10111",
+        "maps_link": "https://maps.google.com/?q=Rockefeller+Center+Christmas+Tree",
+        "budget": "free",
+        "status": "planned",
+        "estimated_visit_time": "20\u201340 min",
+        "tags": [
+            "holiday",
+            "outdoor"
+        ],
+        "notes": "Annual Christmas tree lighting at Rockefeller Center. Best visited late evening to avoid crowds.",
+        "emoji": ""
+    },
+    {
+        "name": "Cats: The Jellicle Ball",
+        "category": "show",
+        "subcategory": "Broadway musical",
+        "neighborhood": "Theater District",
+        "address": "Broadhurst Theatre, 235 West 44th St, New York NY 10036",
+        "maps_link": "https://maps.google.com/?q=Broadhurst+Theatre+235+West+44th+St+New+York+NY+10036",
+        "budget": "$$$",
+        "status": "planned",
+        "estimated_visit_time": "2h 45m (incl. intermission)",
+        "tags": [
+            "broadway",
+            "musical"
+        ],
+        "notes": "Drag and ballroom culture-inspired revival of Andrew Lloyd Webber's Cats.",
+        "emoji": ""
+    },
+    {
+        "artist": "Tom Lloyd",
+        "title": "Tom Lloyd",
+        "category": "museum",
+        "subcategory": "exhibition",
+        "neighborhood": "Harlem",
+        "address": "The Studio Museum in Harlem, 144 W 125th St, New York NY 10027",
+        "maps_link": "https://maps.google.com/?q=The+Studio+Museum+in+Harlem",
+        "budget": "$$",
+        "dates": "until Aug 30 2026",
+        "status": "planned",
+        "estimated_visit_time": "45\u201360 min",
+        "tags": [
+            "reopening",
+            "Harlem",
+            "art"
+        ],
+        "notes": "Reopening show centered on Tom Lloyd's work. Wed\u2013Thu 11\u20136, Fri\u2013Sat 11\u20139, Sun 11\u20136.",
+        "emoji": ""
+    },
+    {
+        "artist": "Group Exhibition",
+        "title": "From the Studio: Fifty-Eight Years of Artists in Residence",
+        "category": "museum",
+        "subcategory": "survey exhibition",
+        "neighborhood": "Harlem",
+        "address": "The Studio Museum in Harlem, 144 W 125th St, New York NY 10027",
+        "maps_link": "https://maps.google.com/?q=The+Studio+Museum+in+Harlem",
+        "budget": "$$",
+        "dates": "until Aug 30 2026",
+        "status": "planned",
+        "estimated_visit_time": "60\u201390 min",
+        "tags": [
+            "survey",
+            "art",
+            "residency"
+        ],
+        "notes": "Historic survey of the museum's artist-in-residence program. Wed\u2013Thu 11\u20136, Fri\u2013Sat 11\u20139, Sun 11\u20136.",
+        "emoji": ""
+    },
+    {
+        "artist": "Various Artists",
+        "title": "To Be A Place",
+        "category": "museum",
+        "subcategory": "reopening exhibition",
+        "neighborhood": "Harlem",
+        "address": "The Studio Museum in Harlem, 144 W 125th St, New York NY 10027",
+        "maps_link": "https://maps.google.com/?q=The+Studio+Museum+in+Harlem",
+        "budget": "$$",
+        "dates": "until Aug 30 2026",
+        "status": "planned",
+        "estimated_visit_time": "60\u201390 min",
+        "tags": [
+            "reopening",
+            "large-scale"
+        ],
+        "notes": "Large-scale reopening exhibition. Wed\u2013Thu 11\u20136, Fri\u2013Sat 11\u20139, Sun 11\u20136.",
+        "emoji": ""
+    },
+    {
+        "artist": "Camille Norment",
+        "title": "Untitled (heliotrope)",
+        "category": "museum",
+        "subcategory": "sound installation",
+        "neighborhood": "Harlem",
+        "address": "The Studio Museum in Harlem, 144 W 125th St, New York NY 10027",
+        "maps_link": "https://maps.google.com/?q=The+Studio+Museum+in+Harlem",
+        "budget": "$$",
+        "dates": "opening Nov 15 2025",
+        "status": "planned",
+        "estimated_visit_time": "30\u201345 min",
+        "tags": [
+            "sound",
+            "installation"
+        ],
+        "notes": "Sound installation in the new building. Wed\u2013Thu 11\u20136, Fri\u2013Sat 11\u20139, Sun 11\u20136.",
+        "emoji": ""
+    },
+    {
+        "artist": "Gabriele M\u00fcnter",
+        "title": "Contours of a World",
+        "category": "museum",
+        "subcategory": "exhibition",
+        "neighborhood": "Upper East Side",
+        "address": "Solomon R. Guggenheim Museum, 1071 5th Ave, New York NY 10128",
+        "maps_link": "https://maps.google.com/?q=Solomon+R.+Guggenheim+Museum",
+        "budget": "$$$",
+        "dates": "until Apr 26 2026",
+        "status": "planned",
+        "estimated_visit_time": "60\u201390 min",
+        "tags": [
+            "museum",
+            "survey"
+        ],
+        "notes": "Major survey of M\u00fcnter's work. Hours 10:30\u20135:30.",
+        "emoji": ""
+    },
+    {
+        "artist": "Group Exhibition",
+        "title": "Fetish",
+        "category": "gallery",
+        "subcategory": "exhibition",
+        "neighborhood": "Upper East Side",
+        "address": "Colnaghi New York, 38 E 70th St, New York NY 10021",
+        "maps_link": "https://maps.google.com/?q=38+E+70th+St+New+York+NY+10021",
+        "budget": "free",
+        "dates": "until Jan 16 2026",
+        "status": "planned",
+        "estimated_visit_time": "30\u201345 min",
+        "tags": [
+            "African",
+            "European",
+            "dialogue"
+        ],
+        "notes": "African and European masterpieces in dialogue around the theme of fetish.",
+        "emoji": ""
+    },
+    {
+        "artist": "Lauren Halsey",
+        "title": "New Works",
+        "category": "gallery",
+        "subcategory": "exhibition",
+        "neighborhood": "Upper East Side",
+        "address": "Gagosian \u2013 Park & 75, 821 Park Ave, New York NY 10021",
+        "maps_link": "https://maps.google.com/?q=821+Park+Ave+New+York+NY+10021",
+        "budget": "free",
+        "dates": "opening Nov 14 2025",
+        "status": "planned",
+        "estimated_visit_time": "30\u201345 min",
+        "tags": [
+            "sculpture",
+            "contemporary"
+        ],
+        "notes": "New work by Lauren Halsey at Gagosian's Park & 75 space.",
+        "emoji": ""
+    },
+    {
+        "artist": "Jeff Koons",
+        "title": "Porcelain Series",
+        "category": "gallery",
+        "subcategory": "exhibition",
+        "neighborhood": "Chelsea",
+        "address": "Gagosian \u2013 541 W 24th St, New York NY 10011",
+        "maps_link": "https://maps.google.com/?q=541+W+24th+St+New+York+NY+10011",
+        "budget": "free",
+        "dates": "until Feb 28 2026",
+        "status": "planned",
+        "estimated_visit_time": "30\u201345 min",
+        "tags": [
+            "sculpture",
+            "Chelsea"
+        ],
+        "notes": "Sculptural works in Koons's porcelain series.",
+        "emoji": ""
+    },
+    {
+        "artist": "Richard Prince",
+        "title": "Folk Songs",
+        "category": "gallery",
+        "subcategory": "exhibition",
+        "neighborhood": "Chelsea",
+        "address": "Gagosian \u2013 555 W 24th St, New York NY 10011",
+        "maps_link": "https://maps.google.com/?q=555+W+24th+St+New+York+NY+10011",
+        "budget": "free",
+        "dates": "until Dec 20 2025",
+        "status": "planned",
+        "estimated_visit_time": "30\u201345 min",
+        "tags": [
+            "painting",
+            "photography"
+        ],
+        "notes": "Paintings and photographic works by Richard Prince.",
+        "emoji": ""
+    },
+    {
+        "artist": "Louise Bourgeois",
+        "title": "Gathering Wool",
+        "category": "gallery",
+        "subcategory": "exhibition",
+        "neighborhood": "Chelsea",
+        "address": "Hauser & Wirth \u2013 22nd Street, 542 W 22nd St, New York NY 10011",
+        "maps_link": "https://maps.google.com/?q=542+W+22nd+St+New+York+NY+10011",
+        "budget": "free",
+        "dates": "until Jan 24 2026",
+        "status": "planned",
+        "estimated_visit_time": "45\u201360 min",
+        "tags": [
+            "sculpture",
+            "Chelsea"
+        ],
+        "notes": "Major Bourgeois show at Hauser & Wirth.",
+        "emoji": ""
+    },
+    {
+        "artist": "Joan Mitchell",
+        "title": "To Define a Feeling (1960\u20131965)",
+        "category": "gallery",
+        "subcategory": "exhibition",
+        "neighborhood": "Chelsea",
+        "address": "David Zwirner \u2013 20th Street, 533 W 20th St, New York NY 10011",
+        "maps_link": "https://maps.google.com/?q=533+W+20th+St+New+York+NY+10011",
+        "budget": "free",
+        "dates": "until Dec 13 2025",
+        "status": "planned",
+        "estimated_visit_time": "45\u201360 min",
+        "tags": [
+            "painting",
+            "abstract"
+        ],
+        "notes": "Focused Mitchell show on a key five-year period.",
+        "emoji": ""
+    },
+    {
+        "artist": "Magritte / Les Lalanne",
+        "title": "In the Mind\u2019s Garden",
+        "category": "gallery",
+        "subcategory": "exhibition",
+        "neighborhood": "Chelsea",
+        "address": "Kasmin Gallery, 297 10th Ave, New York NY 10001",
+        "maps_link": "https://maps.google.com/?q=297+10th+Ave+New+York+NY+10001",
+        "budget": "free",
+        "dates": "until Jan 11 2026",
+        "status": "planned",
+        "estimated_visit_time": "45\u201360 min",
+        "tags": [
+            "surreal",
+            "sculpture"
+        ],
+        "notes": "Dual exhibition of Magritte and Les Lalanne.",
+        "emoji": ""
+    },
+    {
+        "artist": "Ragnar Kjartansson",
+        "title": "Sunday Without Love",
+        "category": "gallery",
+        "subcategory": "installation",
+        "neighborhood": "Tribeca",
+        "address": "Luhring Augustine \u2013 Tribeca, 17 White St, New York NY 10013",
+        "maps_link": "https://maps.google.com/?q=17+White+St+New+York+NY+10013",
+        "budget": "free",
+        "dates": "until Jan 10 2026",
+        "status": "planned",
+        "estimated_visit_time": "45\u201360 min",
+        "tags": [
+            "immersive",
+            "video"
+        ],
+        "notes": "Immersive video/installation work in Tribeca.",
+        "emoji": ""
+    },
+    {
+        "artist": "Sylvie Fleury",
+        "title": "Instructions for Twilight",
+        "category": "experience",
+        "subcategory": "performance (Performa)",
+        "neighborhood": "Financial District",
+        "address": "Water Street Projects WSA, 180 Maiden Lane, 39th Floor, New York NY 10038",
+        "maps_link": "https://maps.google.com/?q=180+Maiden+Lane+39th+Floor+New+York+NY+10038",
+        "budget": "$$",
+        "dates": "until Nov 23 2025",
+        "status": "planned",
+        "estimated_visit_time": "Sat 5pm, Sun 5pm",
+        "tags": [
+            "performance",
+            "Performa"
+        ],
+        "notes": "Performa commission with scheduled weekend performances.",
+        "emoji": ""
+    },
+    {
+        "name": "Doppelg\u00e4nger Workshop (studio open)",
+        "category": "experience",
+        "subcategory": "Performa studio",
+        "neighborhood": "Soho",
+        "address": "Performa Studio, 424 Broadway, New York NY 10013",
+        "maps_link": "https://maps.google.com/?q=424+Broadway+New+York+NY+10013",
+        "budget": "free",
+        "dates": "until Nov 23 2025",
+        "status": "planned",
+        "estimated_visit_time": "30\u201345 min",
+        "tags": [
+            "performance",
+            "studio"
+        ],
+        "notes": "Open studio during Performa festival.",
+        "emoji": ""
+    },
+    {
+        "artist": "Ana Mendieta",
+        "title": "Selected Works",
+        "category": "gallery",
+        "subcategory": "exhibition",
+        "neighborhood": "Midtown",
+        "address": "Marian Goodman Gallery, 24 W 57th St, New York NY 10019",
+        "maps_link": "https://maps.google.com/?q=24+W+57th+St+New+York+NY+10019",
+        "budget": "free",
+        "dates": "until Jan 3 2026",
+        "status": "planned",
+        "estimated_visit_time": "30\u201345 min",
+        "tags": [
+            "film",
+            "photo"
+        ],
+        "notes": "Key film, photo, and documentation works by Mendieta.",
+        "emoji": ""
+    },
+    {
+        "artist": "Pierre-Auguste Renoir",
+        "title": "Renoir: Drawings",
+        "category": "museum",
+        "subcategory": "exhibition",
+        "neighborhood": "Midtown East",
+        "address": "The Morgan Library & Museum, 225 Madison Ave, New York NY 10016",
+        "maps_link": "https://maps.google.com/?q=The+Morgan+Library+%26+Museum",
+        "budget": "$$$",
+        "dates": "until Jan 26 2026",
+        "status": "planned",
+        "estimated_visit_time": "45\u201360 min",
+        "tags": [
+            "drawing",
+            "museum"
+        ],
+        "notes": "Intimate museum show of Renoir drawings.",
+        "emoji": ""
+    },
+    {
+        "artist": "Claude Monet",
+        "title": "Monet & Venice",
+        "category": "museum",
+        "subcategory": "exhibition",
+        "neighborhood": "Prospect Heights, Brooklyn",
+        "address": "Brooklyn Museum, 200 Eastern Pkwy, Brooklyn NY 11238",
+        "maps_link": "https://maps.google.com/?q=Brooklyn+Museum",
+        "budget": "$$$",
+        "dates": "until Feb 1 2026",
+        "status": "planned",
+        "estimated_visit_time": "90\u2013120 min",
+        "tags": [
+            "impressionism",
+            "blockbuster"
+        ],
+        "notes": "Large Monet exhibition focused on Venice.",
+        "emoji": ""
+    }
+]
