@@ -219,7 +219,7 @@ function renderCards() {
     const location = splitVenueAddress(item.address);
     const status =
       item.status &&
-      `<span class="badge status-${item.status}">${statusBadge[item.status] || ''} ${capitalize(item.status)}</span>`;
+      `<span class="status-icon status-${item.status}" title="${capitalize(item.status)}">${statusBadge[item.status] || ''}</span>`;
     card.innerHTML = `
       <div class="card-top">
         <span class="card-dot ${categoryClass(item.category)}"></span>

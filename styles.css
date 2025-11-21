@@ -5,7 +5,7 @@
   --muted: #6b7280;
   --accent: #0f172a;
   --accent-soft: #111827;
-  --pill: #eef1f6;
+  --pill: #f8fafc;
   --pill-active: #0f172a;
   --pill-active-text: #f8fafc;
   --border: #e5e7eb;
@@ -15,15 +15,15 @@
   --status-planned: #3b82f6;
   --status-completed: #16a34a;
   --status-archived: #9ca3af;
-  --cat-museum: #6d28d9;
-  --cat-gallery: #2563eb;
-  --cat-restaurant: #ea580c;
-  --cat-bar: #c026d3;
-  --cat-show: #db2777;
-  --cat-shop: #0ea5e9;
-  --cat-experience: #10b981;
-  --cat-walk: #84cc16;
-  --cat-other: #1f2937;
+  --cat-museum: #f78da7;
+  --cat-gallery: #a5b4ff;
+  --cat-restaurant: #ffb86c;
+  --cat-bar: #f472b6;
+  --cat-show: #c084fc;
+  --cat-shop: #6ee7ff;
+  --cat-experience: #6ee7b7;
+  --cat-walk: #a3e635;
+  --cat-other: #cbd5e1;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
@@ -266,36 +266,25 @@ main {
   font-size: 12px;
 }
 
-.badge {
-  background: #eef2ff;
-  color: #1e3a8a;
-  border-radius: 999px;
-  padding: 4px 8px;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+.status-icon {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
 }
 
-.badge.status-draft {
-  background: rgba(251, 146, 60, 0.12);
-  color: var(--status-draft);
-}
-
-.badge.status-planned {
-  background: rgba(59, 130, 246, 0.12);
-  color: var(--status-planned);
-}
-
-.badge.status-completed {
-  background: rgba(22, 163, 74, 0.12);
-  color: var(--status-completed);
-}
-
-.badge.status-archived {
-  background: rgba(156, 163, 175, 0.16);
-  color: var(--status-archived);
-}
+.status-icon.status-draft { color: var(--status-draft); }
+.status-icon.status-planned { color: var(--status-planned); }
+.status-icon.status-completed { color: var(--status-completed); }
+.status-icon.status-archived { color: var(--status-archived); }
 
 .category-museum { background: var(--cat-museum); }
 .category-gallery { background: var(--cat-gallery); }
