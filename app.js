@@ -33,8 +33,8 @@ const generateRouteBtn = document.getElementById('generateRoute');
 const routeStatus = document.getElementById('routeStatus');
 
 const categoryEmoji = {
-  museum: '🖼️',
-  gallery: '🏛️',
+  museum: '🏛️',
+  gallery: '🖼️',
   restaurant: '🍽️',
   bar: '🍸',
   show: '🎭',
