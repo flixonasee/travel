@@ -1,4 +1,7 @@
+// Storage key for local persistence
 const STORAGE_KEY = 'nyc-directory-data-v1';
+// Allowed statuses including the new archived state
+const ALLOWED_STATUSES = ['draft', 'planned', 'completed', 'archived'];
 const cardGrid = document.getElementById('cardGrid');
 const categoryPills = document.getElementById('categoryPills');
 const neighborhoodFilter = document.getElementById('neighborhoodFilter');
@@ -54,6 +57,26 @@ const statusBadge = {
   archived: '🗂️'
 };
 
+const neighborhoodHints = [
+  'Harlem',
+  'Upper East Side',
+  'Upper West Side',
+  'Chelsea',
+  'Tribeca',
+  'Soho',
+  'Midtown',
+  'Midtown East',
+  'Theater District',
+  'Financial District',
+  'Brooklyn',
+  'Prospect Heights',
+  'Meatpacking District',
+  'Washington Heights',
+  'Central Park',
+  'Greenwich Village',
+  'Lower East Side'
+];
+
 let items = [];
 let activeCategory = 'all';
 let currentDetailItem = null;
@@ -88,13 +111,19 @@ async function loadData() {
   }
 }
 
+function normalizeStatus(status) {
+  if (!status) return 'draft';
+  const normalized = status.toLowerCase();
+  return ALLOWED_STATUSES.includes(normalized) ? normalized : 'draft';
+}
+
 function enrichItem(item) {
   const emoji = item.emoji || categoryEmoji[item.category] || categoryEmoji.other;
   return {
     ...item,
     id: item.id || createId(),
     emoji,
-    status: item.status || 'draft',
+    status: normalizeStatus(item.status),
     tags: item.tags || []
   };
 }
@@ -108,7 +137,8 @@ function persist() {
 }
 
 function renderFilters() {
-  const categories = ['all', ...new Set(items.map((i) => i.category || 'other'))];
+  const filterSource = statusFilter.value === 'archived' ? items : items.filter((i) => i.status !== 'archived');
+  const categories = ['all', ...new Set(filterSource.map((i) => i.category || 'other'))];
   categoryPills.innerHTML = '';
   categories.forEach((cat) => {
     const pill = document.createElement('button');
@@ -124,14 +154,14 @@ function renderFilters() {
   });
 
   const prevNeighborhood = neighborhoodFilter.value || 'all';
-  const neighborhoods = ['all', ...new Set(items.map((i) => i.neighborhood).filter(Boolean))];
+  const neighborhoods = ['all', ...new Set(filterSource.map((i) => i.neighborhood).filter(Boolean))];
   neighborhoodFilter.innerHTML = neighborhoods
     .map((n) => `<option value="${n}">${n === 'all' ? 'All' : n}</option>`)
     .join('');
   neighborhoodFilter.value = neighborhoods.includes(prevNeighborhood) ? prevNeighborhood : 'all';
 
   const prevBudget = budgetFilter.value || 'all';
-  const budgets = ['all', ...new Set(items.map((i) => i.budget).filter(Boolean))];
+  const budgets = ['all', ...new Set(filterSource.map((i) => i.budget).filter(Boolean))];
   budgetFilter.innerHTML = budgets
     .map((b) => `<option value="${b}">${b === 'all' ? 'All' : b}</option>`)
     .join('');
@@ -145,6 +175,8 @@ function filterItems() {
   const status = statusFilter.value;
 
   return items.filter((item) => {
+    // Archived items are hidden unless explicitly requested
+    if (status !== 'archived' && item.status === 'archived') return false;
     if (activeCategory !== 'all' && item.category !== activeCategory) return false;
     if (neighborhood !== 'all' && item.neighborhood !== neighborhood) return false;
     if (budget !== 'all' && item.budget !== budget) return false;
@@ -162,8 +194,9 @@ function filterItems() {
 }
 
 function renderProgress() {
-  const total = items.length;
-  const completed = items.filter((i) => i.status === 'completed').length;
+  const activeItems = items.filter((i) => i.status !== 'archived');
+  const total = activeItems.length;
+  const completed = activeItems.filter((i) => i.status === 'completed').length;
   const percent = total ? Math.round((completed / total) * 100) : 0;
   progressEl.textContent = `Completed: ${completed} / Total ${total} (${percent}%)`;
 }
@@ -188,7 +221,13 @@ function renderCards() {
         <h3 class="card-title">${formatTitle(item)}</h3>
         <p class="card-meta">${item.neighborhood || 'NYC'} ${item.budget ? '• ' + item.budget : ''}</p>
         ${timing}
-        ${item.status ? `<span class="badge">${statusBadge[item.status] || ''} ${capitalize(item.status)}</span>` : ''}
+        ${
+          item.status
+            ? `<span class="badge status-${item.status}">${statusBadge[item.status] || ''} ${capitalize(
+                item.status
+              )}</span>`
+            : ''
+        }
       </div>
     `;
     card.addEventListener('click', () => openDetail(item));
@@ -313,5 +352,92 @@ addItemForm.addEventListener('submit', (event) => {
   addItemForm.reset();
   addCategory.value = category;
 });
+
+// Attempt to auto-fill fields from a Google Maps link using public page metadata.
+addMaps.addEventListener('change', () => handleMapsAutofill());
+addMaps.addEventListener('blur', () => handleMapsAutofill());
+
+async function handleMapsAutofill() {
+  const url = addMaps.value.trim();
+  if (!url || !url.includes('google.com/maps')) return;
+
+  addItemStatus.textContent = 'Fetching place details from Google Maps...';
+  const fallbackName = decodeQueryParam(url);
+  let html = '';
+
+  try {
+    const response = await fetch(url);
+    html = await response.text();
+  } catch (error) {
+    console.warn('Metadata fetch failed, using fallback query parsing.', error);
+  }
+
+  const metadata = parseMapsMetadata(html);
+  const combinedText = [metadata.ogTitle, metadata.title, metadata.description, fallbackName]
+    .filter(Boolean)
+    .join(' • ');
+
+  const derivedName = metadata.name || fallbackName || '';
+  const derivedAddress = metadata.address || fallbackName || '';
+  const derivedNeighborhood = guessNeighborhood(metadata.address || metadata.ogTitle || combinedText);
+  const derivedCategory = guessCategory(combinedText);
+
+  if (!addName.value) addName.value = derivedName;
+  if (!addAddress.value && derivedAddress) addAddress.value = derivedAddress;
+  if (!addNeighborhood.value && derivedNeighborhood) addNeighborhood.value = derivedNeighborhood;
+  if (derivedCategory && addCategory.value === 'other') addCategory.value = derivedCategory;
+
+  addItemStatus.textContent = derivedName
+    ? `Autofilled from Maps: ${derivedName}`
+    : 'Maps link parsed. Edit fields as needed.';
+}
+
+function decodeQueryParam(url) {
+  try {
+    const parsed = new URL(url);
+    const q = parsed.searchParams.get('q');
+    return q ? decodeURIComponent(q.replace(/\+/g, ' ')) : '';
+  } catch (error) {
+    return '';
+  }
+}
+
+function parseMapsMetadata(html) {
+  if (!html) return {};
+  const getMeta = (property) => {
+    const regex = new RegExp(`<meta[^>]+${property}="([^"]+)"`, 'i');
+    const match = html.match(regex);
+    return match ? match[1] : '';
+  };
+
+  const ogTitle = getMeta('property="og:title"');
+  const description = getMeta('property="og:description"');
+  const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+  const title = titleMatch ? titleMatch[1] : '';
+
+  const titleParts = ogTitle?.split('·').map((p) => p.trim()) || [];
+  const name = titleParts[0] || title.replace(' - Google Maps', '').trim();
+  const address = titleParts.find((p) => /\d{3,} /.test(p)) || description || '';
+
+  return { ogTitle, title, description, name, address };
+}
+
+function guessNeighborhood(text) {
+  if (!text) return '';
+  const lower = text.toLowerCase();
+  const match = neighborhoodHints.find((hint) => lower.includes(hint.toLowerCase()));
+  return match || '';
+}
+
+function guessCategory(text) {
+  if (!text) return '';
+  const lower = text.toLowerCase();
+  if (/(restaurant|café|cafe|bistro|market)/.test(lower)) return 'restaurant';
+  if (/(bar|cocktail|lounge)/.test(lower)) return 'bar';
+  if (/(gallery|art space)/.test(lower)) return 'gallery';
+  if (/museum/.test(lower)) return 'museum';
+  if (/(theatre|theater|broadway|show)/.test(lower)) return 'show';
+  return '';
+}
 
 loadData();
