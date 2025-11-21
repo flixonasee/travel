@@ -23,6 +23,10 @@ const detailDates = document.getElementById('detailDates');
 const statusActions = document.getElementById('statusActions');
 const statusButtonTemplate = document.getElementById('statusButtonTemplate');
 
+const addModal = document.getElementById('addModal');
+const openAddModalBtn = document.getElementById('openAddModal');
+const closeAddModalBtn = document.getElementById('closeAddModal');
+
 const addItemForm = document.getElementById('addItemForm');
 const addItemStatus = document.getElementById('addItemStatus');
 const addName = document.getElementById('addName');
@@ -215,20 +219,19 @@ function renderCards() {
     const timing = item.dates || item.estimated_visit_time
       ? `<p class="card-dates">${[item.dates, item.estimated_visit_time].filter(Boolean).join(' • ')}</p>`
       : '';
+    const status =
+      item.status &&
+      `<span class="badge status-${item.status}">${statusBadge[item.status] || ''} ${capitalize(item.status)}</span>`;
     card.innerHTML = `
-      <div class="card-emoji">${item.emoji}</div>
-      <div>
-        <h3 class="card-title">${formatTitle(item)}</h3>
-        <p class="card-meta">${item.neighborhood || 'NYC'} ${item.budget ? '• ' + item.budget : ''}</p>
-        ${timing}
-        ${
-          item.status
-            ? `<span class="badge status-${item.status}">${statusBadge[item.status] || ''} ${capitalize(
-                item.status
-              )}</span>`
-            : ''
-        }
+      <div class="card-top">
+        <span class="card-dot ${categoryClass(item.category)}"></span>
+        <span class="card-neighborhood">${item.neighborhood || 'NYC'}</span>
       </div>
+      <h3 class="card-title">${formatTitle(item)}</h3>
+      <p class="card-meta">${[capitalize(item.category), item.subcategory].filter(Boolean).join(' • ')}</p>
+      <p class="card-meta subtle">${[item.budget, item.estimated_visit_time].filter(Boolean).join(' • ')}</p>
+      ${timing}
+      ${status || ''}
     `;
     card.addEventListener('click', () => openDetail(item));
     cardGrid.appendChild(card);
@@ -298,6 +301,11 @@ function capitalize(text) {
   return text ? text.charAt(0).toUpperCase() + text.slice(1) : '';
 }
 
+function categoryClass(category) {
+  const safe = category || 'other';
+  return `category-${safe}`;
+}
+
 
 function closeDetailPanel() {
   detailPanel.classList.remove('open');
@@ -307,6 +315,21 @@ function closeDetailPanel() {
 closeDetail.addEventListener('click', closeDetailPanel);
 detailPanel.addEventListener('click', (e) => {
   if (e.target === detailPanel) closeDetailPanel();
+});
+
+// Floating add-item modal controls
+openAddModalBtn.addEventListener('click', () => {
+  addModal.classList.add('open');
+  addItemStatus.textContent = '';
+  addName.focus();
+});
+
+closeAddModalBtn.addEventListener('click', () => {
+  addModal.classList.remove('open');
+});
+
+addModal.addEventListener('click', (e) => {
+  if (e.target === addModal) addModal.classList.remove('open');
 });
 
 [neighborhoodFilter, budgetFilter, statusFilter].forEach((select) => {
@@ -351,6 +374,7 @@ addItemForm.addEventListener('submit', (event) => {
   addItemStatus.textContent = `Added “${formatTitle(newItem)}” (${capitalize(newItem.category)}).`;
   addItemForm.reset();
   addCategory.value = category;
+  addModal.classList.remove('open');
 });
 
 // Attempt to auto-fill fields from a Google Maps link using public page metadata.

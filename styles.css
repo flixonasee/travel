@@ -1,20 +1,29 @@
 :root {
-  --bg: #f4f5f7;
+  --bg: #f5f7fb;
   --card: #ffffff;
   --text: #0f172a;
   --muted: #6b7280;
   --accent: #111827;
   --accent-soft: #1f2937;
-  --pill: #e7ebf3;
+  --pill: #ecf0f6;
   --pill-active: #111827;
   --pill-active-text: #f8fafc;
   --border: #e5e7eb;
-  --shadow: 0 14px 38px rgba(15, 23, 42, 0.08);
-  --radius: 12px;
+  --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  --radius: 14px;
   --status-draft: #fb923c;
   --status-planned: #3b82f6;
   --status-completed: #16a34a;
   --status-archived: #9ca3af;
+  --cat-museum: #6d28d9;
+  --cat-gallery: #2563eb;
+  --cat-restaurant: #ea580c;
+  --cat-bar: #c026d3;
+  --cat-show: #db2777;
+  --cat-shop: #0ea5e9;
+  --cat-experience: #10b981;
+  --cat-walk: #84cc16;
+  --cat-other: #1f2937;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
@@ -33,14 +42,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 28px 28px 12px;
+  padding: 32px 32px 12px;
   gap: 16px;
 }
 
 h1 {
   margin: 0 0 8px;
   letter-spacing: -0.5px;
-  font-size: 32px;
+  font-size: 34px;
 }
 
 .subtitle {
@@ -62,8 +71,8 @@ h1 {
 .filters {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 0 28px 14px;
+  gap: 16px;
+  padding: 0 32px 18px;
 }
 
 .filter-group {
@@ -120,7 +129,7 @@ input[type="search"] {
 }
 
 main {
-  padding: 12px 28px 40px;
+  padding: 12px 32px 56px;
 }
 
 .panel {
@@ -196,8 +205,8 @@ main {
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 .card {
@@ -206,23 +215,39 @@ main {
   padding: 18px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.14);
 }
 
-.card-emoji {
-  font-size: 36px;
+.card-top {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  width: 100%;
+}
+
+.card-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.02);
+}
+
+.card-neighborhood {
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .card-title {
@@ -234,9 +259,11 @@ main {
 .card-meta {
   margin: 0;
   color: var(--muted);
-  display: flex;
-  gap: 10px;
-  align-items: center;
+}
+
+.card-meta.subtle {
+  font-size: 13px;
+  color: #94a3b8;
 }
 
 .card-dates {
@@ -274,6 +301,63 @@ main {
 .badge.status-archived {
   background: rgba(156, 163, 175, 0.16);
   color: var(--status-archived);
+}
+
+.category-museum { background: var(--cat-museum); }
+.category-gallery { background: var(--cat-gallery); }
+.category-restaurant { background: var(--cat-restaurant); }
+.category-bar { background: var(--cat-bar); }
+.category-show { background: var(--cat-show); }
+.category-shop { background: var(--cat-shop); }
+.category-experience { background: var(--cat-experience); }
+.category-walk { background: var(--cat-walk); }
+.category-other { background: var(--cat-other); }
+
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  border: none;
+  box-shadow: 0 20px 40px rgba(17, 24, 39, 0.25);
+  cursor: pointer;
+  font-size: 28px;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fab:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 24px 48px rgba(17, 24, 39, 0.28);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 10;
+}
+
+.modal.open { display: flex; }
+
+.modal-content {
+  background: var(--card);
+  border-radius: 18px;
+  width: min(800px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 22px;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25);
 }
 
 .detail-panel {
@@ -396,10 +480,6 @@ main {
 }
 
 @media (max-width: 640px) {
-  .card {
-    grid-template-columns: 48px 1fr;
-  }
-
   .inline-group {
     flex-direction: column;
   }
